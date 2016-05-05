@@ -1,11 +1,52 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /*background-color: whiteSmoke;*/
+  /*background-color: #FFCC00;*/
+  background-color: #FCD036;
 }
 
 a {
   color: #00B7FF;
+}
+
+#navbarcustom {
+  background-color: #333333;
+}
+
+.nav.navbar-nav.navbar-right li a {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #FFCC00;
+}
+
+.btn-primary {
+  background-color: #333333;
+  margin-left: 30%;
+  border-color: black;
+}
+
+.btn-primary:hover {
+  background-color: #666666;
+  border-color: black;
+}
+
+#brandname {
+  font-family: 'Playfair Display', serif;
+  color: #FFCC00;
+}
+
+.form-group input {
+  width: 50%;
+}
+
+#main-submission-form {
+  /*background-color: lightGrey;*/
+  width: 800px;
+  font-family: 'Playfair Display', serif;
+}
+
+.page-header {
+  font-family: 'Playfair Display', serif;
 }
 
 /*use masonry*/
@@ -32,18 +73,18 @@ a {
   width: 100%;*/
   display: inline-block;
     background: #fff;
-    padding: 1em;
+    padding: 0em 1em 1em 1em;
     margin: 0 0 1.5em;
     width: 100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-shadow: 2px 2px 4px 0 #ccc;
+    box-shadow: 4px 4px 8px 0 #ccc;
 }
 
 .grid-item img {
   width: 100% !important;
- height: auto !important;
+  height: auto !important;
 }
 
 @media only screen and (min-width: 400px) {

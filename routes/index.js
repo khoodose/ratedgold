@@ -62,6 +62,24 @@ router.get('/providers/:provider', function(req, res) {
     });
 });
 
+// delete a particular provider
+
+router.delete('/providers/:provider', function(req, res) {
+  req.provider.remove(function(err, provider) {
+    if (err) { return next(err); }
+    res.send("provider deleted");
+  });
+});
+
+// delete a particular review
+
+router.delete('/providers/:provider/reviews/:review', function(req, res) {
+  req.review.remove(function(err, provider) {
+    if (err) { return next(err); }
+    res.send("review deleted");
+  });
+});
+
 // upvote a provider
 router.put('/providers/:provider/upvote', function(req, res, next) {
   req.provider.upvote(function(err, provider) {

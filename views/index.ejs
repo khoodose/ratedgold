@@ -9,14 +9,27 @@
   <script srt="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.0/masonry.pkgd.min.js"></script>
   <script src="/javascripts/angularApp.js"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic" rel="stylesheet" type="text/css">
   <style> .glyphicon-thumbs-up { cursor:pointer } </style>
 </head>
 <body ng-app="ratedGold" ng-controller="MainCtrl">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      This should appear above the main content
+    <div class="col-md-12">
+      <nav class="navbar navbar-inverse navbar-fixed-top" id="navbarcustom">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#/home" id="brandname">Edurater</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right" id="navitems">
+            <li><a href="#">Enrichment</a></li>
+            <li><a href="#">Tuition</a></li>
+            <li><a href="#">SkillsFuture</a></li>
+            <li><a href="#">User Info</a></li>
+          </ul>
+        </div>
+      </nav>
       <ui-view></ui-view>
-      Domo Arigato Mr Roboto
+
     </div>
   </div>
 
@@ -24,7 +37,10 @@
   <script type="text/ng-template" id="/home.html">
 
     <div class="page-header">
-      <h1>Rated Gold!</h1>
+      <center>
+        <h3>Welcome to Edurater</h3>
+        <p>Use our community recommendations to find the best educational experience for yourself and your loved ones</p>
+      </center>
     </div>
 
     <div class=wrapper>
@@ -49,43 +65,64 @@
       </div>
     </div>
 
+    <div class="container" id="main-submission-form">
     <form ng-submit="addProvider()"
-      style="margin-top:30px;">
-      <h4>Know of another education or enrichment provider?  Add it here!</h4>
+      style="margin-top:30px;" class="form-horizontal">
+      <h4>Know of another education or enrichment provider? Add it here!</h4>
 
       <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Name:</label>
+        <div class="col-md-10">
         <input type="text"
           class="form-control"
           placeholder="Name of provider"
           ng-model="name"></input>
-      </div>
+        </div>
+        </div>
+
       <div class="form-group">
+        <label class="control-label col-sm-2" for="homepagelink">Link:</label>
+        <div class="col-md-10">
         <input type="text"
         class="form-control"
         placeholder="Link to provider's homepage"
         ng-model="link"></input>
       </div>
+      </div>
+
       <div class="form-group">
+        <label class="control-label col-sm-2" for="description">Description:</label>
+        <div class="col-md-10">
         <input type="text"
         class="form-control"
         placeholder="A brief description of the provider"
         ng-model="description"></input>
       </div>
+      </div>
+
       <div class="form-group">
+        <label class="control-label col-sm-2" for="category">Category:</label>
+        <div class="col-md-10">
         <input type="text"
         class="form-control"
         placeholder="Enter a category for this provider"
         ng-model="category"></input>
       </div>
+      </div>
+
       <div class="form-group">
+        <label class="control-label col-sm-2" for="imageUrl">Image URL:</label>
+        <div class="col-md-10">
         <input type="text"
         class="form-control"
         placeholder="Enter a URL for the provider's image"
         ng-model="imageUrl"></input>
       </div>
+      </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+  </div>
 
   </script>
 
@@ -102,7 +139,7 @@
         <div><em>{{provider.description}}</em></div>
         <br>
         <a ng-show="provider.link" href="{{provider.link}}">
-          Homepage
+          Visit this provider's homepage for more information
         </a>
       </h3>
     </div>
@@ -125,7 +162,8 @@
         placeholder="Review"
         ng-model="body"></input>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
     </form>
 
   </script>
