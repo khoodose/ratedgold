@@ -80,7 +80,7 @@ angular.module('ratedGold', ['ui.router'])
     $scope.providers = providers.providers;
 
     $scope.addProvider = function() {
-      if(!$scope.name || $scope.name==="") { return; }
+      if(!$scope.name || $scope.name==="" ||!$scope.description || $scope.description==="") { return; }
       providers.create({
         name: $scope.name,
         link: $scope.link,
