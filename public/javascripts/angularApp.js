@@ -15,6 +15,36 @@ angular.module('ratedGold', ['ui.router'])
         }]
       }
     })
+    .state('tuition', {
+      url: '/tuition',
+      templateUrl: '/tuition.html',
+      controller: 'MainCtrl',
+      resolve: {
+        providerPromise: ['providers', function(providers) {
+          return providers.getAll();
+        }]
+      }
+    })
+    .state('enrichment', {
+      url: '/enrichment',
+      templateUrl: '/enrichment.html',
+      controller: 'MainCtrl',
+      resolve: {
+        providerPromise: ['providers', function(providers) {
+          return providers.getAll();
+        }]
+      }
+    })
+    .state('skillsfuture', {
+      url: '/skillsfuture',
+      templateUrl: '/skillsfuture.html',
+      controller: 'MainCtrl',
+      resolve: {
+        providerPromise: ['providers', function(providers) {
+          return providers.getAll();
+        }]
+      }
+    })
     .state('providers', {
       url: '/providers/{id}',
       templateUrl: '/providers.html',

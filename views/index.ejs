@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rated Gold!</title>
+  <title>Edurater Singapore</title>
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
@@ -21,9 +21,9 @@
             <a class="navbar-brand" href="#/home" id="brandname">Edurater</a>
           </div>
           <ul class="nav navbar-nav navbar-right" id="navitems">
-            <li><a href="#">Enrichment</a></li>
-            <li><a href="#">Tuition</a></li>
-            <li><a href="#">SkillsFuture</a></li>
+            <li><a href="#/enrichment">Enrichment</a></li>
+            <li><a href="#/tuition">Tuition</a></li>
+            <li><a href="#/skillsfuture">SkillsFuture</a></li>
             <li><a href="#">User Info</a></li>
           </ul>
         </div>
@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <div class="container" id="main-submission-form">
+    <div class="container main-submission-form">
     <form ng-submit="addProvider()"
       style="margin-top:30px;" class="form-horizontal">
       <h4>Know of another education or enrichment provider? Add it here!</h4>
@@ -75,17 +75,17 @@
         <div class="col-md-10">
         <input type="text"
           class="form-control"
-          placeholder="Name of provider"
+          placeholder="e.g. The School of Hard Knocks"
           ng-model="name"></input>
         </div>
         </div>
 
       <div class="form-group">
-        <label class="control-label col-sm-2" for="homepagelink">Link:</label>
+        <label class="control-label col-sm-2" for="homepagelink">Provider Site:</label>
         <div class="col-md-10">
         <input type="text"
         class="form-control"
-        placeholder="Link to provider's homepage"
+        placeholder="e.g. www.botakchek.com"
         ng-model="link"></input>
       </div>
       </div>
@@ -95,7 +95,7 @@
         <div class="col-md-10">
         <input type="text"
         class="form-control"
-        placeholder="A brief description of the provider"
+        placeholder="e.g. best in SG, JB and some say Batam"
         ng-model="description"></input>
       </div>
       </div>
@@ -105,7 +105,7 @@
         <div class="col-md-10">
         <input type="text"
         class="form-control"
-        placeholder="Enter a category for this provider"
+        placeholder="e.g. tuition, enrichment, skillsfuture"
         ng-model="category"></input>
       </div>
       </div>
@@ -115,7 +115,7 @@
         <div class="col-md-10">
         <input type="text"
         class="form-control"
-        placeholder="Enter a URL for the provider's image"
+        placeholder="e.g. www.imgur.com/gallery/AbCd"
         ng-model="imageUrl"></input>
       </div>
       </div>
@@ -126,45 +126,160 @@
 
   </script>
 
+  <script type="text/ng-template" id="/tuition.html">
+
+    <div class="page-header">
+      <center>
+        <h3>Tuition Providers</h3>
+        <p>Sometimes you just gotta do what you gotta do... with a little help from these mercenaries...</p>
+      </center>
+    </div>
+
+    <div class=wrapper>
+      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+        <div ng-repeat="provider in providers | orderBy:'-upvotes' | filter:{category:'tuition'}" class="grid-item">
+          <br>
+          <a href="#/providers/{{provider._id}}"><img src="{{provider.imageUrl}}"></a>
+          <br>
+          <span class="glyphicon glyphicon-thumbs-up"
+            ng-click="incrementUpvotes(provider)"></span>
+          {{provider.upvotes}}
+          <div><strong>{{provider.name}}</strong></div>
+          <br>
+          <div><strong><em>{{provider.category}}</em></strong></div>
+          <br>
+          <div><em>{{provider.description}}</em></div>
+          <br>
+          <span>
+            <a href="#/providers/{{provider._id}}">{{provider.reviews.length}} Reviews</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </script>
+
+  <script type="text/ng-template" id="/enrichment.html">
+
+    <div class="page-header">
+      <center>
+        <h3>Enrichment Providers</h3>
+        <p>What is this life, if, full of care, we have no time to stop and stare...</p>
+      </center>
+    </div>
+
+    <div class=wrapper>
+      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+        <div ng-repeat="provider in providers | orderBy:'-upvotes' | filter:{category:'enrichment'}" class="grid-item">
+          <br>
+          <a href="#/providers/{{provider._id}}"><img src="{{provider.imageUrl}}"></a>
+          <br>
+          <span class="glyphicon glyphicon-thumbs-up"
+            ng-click="incrementUpvotes(provider)"></span>
+          {{provider.upvotes}}
+          <div><strong>{{provider.name}}</strong></div>
+          <br>
+          <div><strong><em>{{provider.category}}</em></strong></div>
+          <br>
+          <div><em>{{provider.description}}</em></div>
+          <br>
+          <span>
+            <a href="#/providers/{{provider._id}}">{{provider.reviews.length}} Reviews</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </script>
+
+  <script type="text/ng-template" id="/skillsfuture.html">
+
+    <div class="page-header">
+      <center>
+        <h3>SkillsFuture Training Providers</h3>
+        <p>Remember you can claim <a href="http://www.skillsfuture.sg/credit">skillsfuture credits</a> for these courses</p>
+      </center>
+    </div>
+
+    <div class=wrapper>
+      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+        <div ng-repeat="provider in providers | orderBy:'-upvotes' | filter:{category:'skillsfuture'}" class="grid-item">
+          <br>
+          <a href="#/providers/{{provider._id}}"><img src="{{provider.imageUrl}}"></a>
+          <br>
+          <span class="glyphicon glyphicon-thumbs-up"
+            ng-click="incrementUpvotes(provider)"></span>
+          {{provider.upvotes}}
+          <div><strong>{{provider.name}}</strong></div>
+          <br>
+          <div><strong><em>{{provider.category}}</em></strong></div>
+          <br>
+          <div><em>{{provider.description}}</em></div>
+          <br>
+          <span>
+            <a href="#/providers/{{provider._id}}">{{provider.reviews.length}} Reviews</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </script>
+
   <script type="text/ng-template" id="/providers.html">
 
     <div class="page-header">
-      <h3>
-        <div><strong>{{provider.name}}</strong></div>
-        <br>
-        <div ng-show="provider.imageUrl"><img src="{{provider.imageUrl}}" width=400></div>
-        <br>
-        <div ng-show="provider.category"><strong><em>{{provider.category}}</em></strong></div>
-        <br>
-        <div><em>{{provider.description}}</em></div>
-        <br>
-        <a ng-show="provider.link" href="{{provider.link}}">
-          Visit this provider's homepage for more information
-        </a>
-      </h3>
-    </div>
+      <h3><div><strong>{{provider.name}}</strong></div></h3>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <div ng-show="provider.imageUrl"><img src="{{provider.imageUrl}}" width=400></div>
+          <br>
+          <a ng-show="provider.link" href="{{provider.link}}">
+            Visit this provider's homepage for more information
+          </a>
+        </div>
 
-    <div ng-repeat="review in provider.reviews | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up"
-        ng-click="incrementUpvotes(review)"></span>
-      {{review.upvotes}} - by {{review.author}}
-      <span style="font-size:20px; margin-left:10px;">
-        {{review.body}}
-      </span>
-    </div>
-
-    <form ng-submit="addReview()" style="margin-top:30px;">
-      <h3>Add a new review</h3>
-
-      <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Review"
-        ng-model="body"></input>
+        <div class="col-md-6">
+          <div ng-show="provider.category">
+            <h4>Category</h4>
+              <p>{{provider.category}}</p>
+          </div>
+          <br>
+          <div><h4>Description</h4>
+              <p>{{provider.description}}</p>
+          </div>
+          <br>
+          <h4>Reviews</h4>
+          <div ng-repeat="review in provider.reviews | orderBy:'-upvotes'">
+            <span class="glyphicon glyphicon-thumbs-up"
+              ng-click="incrementUpvotes(review)"></span>
+            {{review.upvotes}} - by {{review.author}}
+            <span style="font-size:14px; margin-left:10px;">
+              {{review.body}}
+            </span>
+          </div>
+        </div>
       </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <br>
-    </form>
+    </div>
+
+    <div class="main-submission-form">
+      <form ng-submit="addReview()" style="margin-top:30px;" class="form-horizontal">
+        <h4>Have you taken a course by this provider? Add a review here:</h4>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="category">Category:</label>
+          <div class="col-md-10">
+          <input type="text"
+          class="form-control"
+          placeholder="e.g. now I've... had... the time of my life..."
+          ng-model="body"></input>
+        </div>
+      </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <br>
+      </form>
+    </div>
 
   </script>
 
